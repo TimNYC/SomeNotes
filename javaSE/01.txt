@@ -1,0 +1,167 @@
+mercury
+
+C:\OpenSource\
+	-eclipse
+	-tomcat
+	-JarFiles
+	-
+
+C:\ Training
+	-Java
+	-JavaEE
+	-JavaScript
+	-EJB
+
+
+Oracle
+normalization and denomalization
+reduce a table into small tables -> reduce redundancy
+join tables to a table -> improve performance
+
+NF: 
+1NF: atomic, unique records 
+2NF: non-key columns depends on part of the key column, 2NF includes 1NF
+3NF: non-key columns depends on another non-key (transitive dependency)
+BCNF: key depends on another key
+
+only two kind of columns, key column and non-key column. key depends on key, non-key depends on key and non-key depends on non-key
+
+PK, UK and CK
+Primary Key, Unique Key, Candidate Key -> super set of PKs
+
+
+T-sql and PL/SQL
+sql91
+
+stored procedure and trigger(specitial stored procedure, will be invoked under some conditions, keep data integerity)
+example: update trigger
+delete trigger
+
+Performance Tuning => increase performance
+(explain plan: time, query ...)
+
+*SQL STATEMENT
+delete and truncate
+1.delete is DML and truncate is DDL
+2.delete can be rollback and truncate can not
+3.delete can be part of table but truncate is all gone.
+
+
+*projection
+select part of the columns
+
+*heading defaults
+
+*interpreter pattern
+design pattern
+
+*HOW TO CHANGE THE WRONG QUERY
+a text
+c /old/new/
+1,2,3,4,5
+
+save filename, get filename
+
+*single row function
+**character functions -> 
+
+select concat('a','b') from dual;
+instr('String','r')    //position is 3. start from 1.
+lpad(sal,10,'*')
+substr('string',2,3)  =>tri    //start, length
+
+*round, trunc, mod
+round(45.27,1), round(45.23,0) and round(45.23,-1)
+45.3, 45.0, 50
+MOD AND 0;
+
+*DATE
+select ename, (sysdate-hiredate)/7 weeks 
+from emp
+where deptno=10;
+
+DATE FUNCTIONS:
+months_between()
+add_months
+next_day  next_day(sysdate,'friday')
+last_day
+round round(sysdate,'MONTH')
+trunc
+
+*CONVERSION FUNCTION:
+TO_NUMBER, TO_CHAR, TO_DATE
+
+*NVL FUNCTION:
+NVL(COMM,0)
+NVL(HIREDATE,'01-JAN-1999')
+
+SELECT ENAME,SAL,COMM,(SAL*12)+NVL(COMM,0)
+FROM EMP;
+
+*DECODE FUNCTION
+JUST LIKE 'SWITCH'
+SELECT JOB,SAL, DECODE(JOB,'analyst',sal*1.1,'clerk',sal*1.15,'manager',sal*1.2,sal) reised_salary
+from emp;
+
+************************************************************
+*left join. right join, inner join record number
+!!!!!join quesion, how many records
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+EXAMPLE 1:
+suppose table A has a column id m records, table B has a column id n records, suppose n>m.
+a.id and b.id are not key to each table.
+A inner join B, has minimum id is 0 and maximum is m*n
+A left join B, has minimum id m and maximum is n+m-1
+A right join B, has n<num(id)<m+n-1
+
+EXAMPLE 2:
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*non-equijoins: emp and salgrade
+(slide 3.16)
+select e ename,e.sal,s.grade
+from emp r, salgrade s 
+where e.sal
+between s.losal and s.hisal;
+
+*outer join
+right join:
+select e.ename, d.deptno
+from emp e left outer join dept d
+on e.deptno = d.deptno
+order by e.deptno;
+
+*The difference of PLSQL AND TSQL:
+ABOUT OUTER JOIN:
+FOR PL/SQL:
+left:
+select * from e, d
+where e.deptno = d.deptno (+)
+
+FOR TSQL:
+left:
+select *
+from e,d
+where e.deptno *= d.deptno
+
+
+*selfjoin
+select worker.ename||' works for ' ||manager.ename
+from emp worker, emp manager
+where worker.mgr = manager.empno;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
