@@ -1,0 +1,20 @@
+https, ssl, mkyong
+see how to configure ssl for tomcat
+!!!!congfigure
+
+1. for tomcat, config/context, oracle jarfile
+2. ssl, bin/keytool  -> java
+3. eclipse
+
+
+in the directory of java, get to jdk6 bin keytool -genkey -alias jason -keyalg RSA -keystore c:\...
+
+*OOP CONCEPT OF JAVASCRIPT
+piea
+
+use Qunit
+
+*in javascript, everything is an object.
+
+*== vs === javascript
+
