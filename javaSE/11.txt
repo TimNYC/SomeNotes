@@ -1,0 +1,18 @@
+*closure,
+function inside function
+module pattern
+:use closure to simulate OOP
+
+*dynamic naming space
+
+*hoisting feature
+you must use var to make it as local variable
+
+*CSS: font, 
+google fonts: 'use' the link, and the code
+
+@font-face
+
+
+
+*transform(rotate, translate and ), transition(add duration), and animation(combined of sequences of transitions)
