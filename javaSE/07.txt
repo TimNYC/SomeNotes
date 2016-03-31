@@ -1,0 +1,63 @@
+*sort the map values
+void printMap(Map<String, Integer> map) {
+	map.entry, throw this entry to list, write new comparator, sort list
+}
+
+*arrays vs list
+arrays.aslist
+
+*Collections
+GroupI: XYZ synchonizeXYZ(XYZ col):
+	XYZ: List,Set,Collection, Map, SortedSet, SortedMap
+THIS WILL RETURN A THREAD-SAFE VERSION.
+GourpII: XYZ unmodifiableXYZ(XYZ col):
+	make the collection read-only
+
+*Exception Handleing
+*checked and unchecked
+not extendble
+if the compiler force you to handle it, checked exception
+others, unchecked
+
+Excpption -> and its subclass-> checked
+RuntimException-> and its subclass->unchecked
+Error-> unchecked
+
+*try catch   or throws XYZEception
+if in try or catch has System.exit(1), the final block will now execute
+otherwise, the final block will have to execute.
+
+can use only try-finally, without catch
+
+printStackTrace is the Chain of Responsibility
+
+*decorator design pattern
+(Wrapper class) file io
+
+*adaptor is also "wrapper", but decorator is to enforce some function but adaptor is to borrow some functions that do not exist.
+
+*Serializable
+*java bean: canbe any java object, but sepecificly refer to java class with only private fields getter and seter and used for data store.
+serialVersionUID is for Serialization and deserialization, if different, cannot diserialize
+
+*transient
+can not be serialized
+
+*serilization is object level, and static is class level, so so static cannot be serilizated but final can be 
+binary stream->object
+
+!only transient and static fields cannot be serialized.
+
+**DEEP COPY
+
+externalizable
+cantorl serilizable
+1.deserilize the externalizble class will call its default constructor, but deserilize a normal object will directly go without construtor.
+2.read/write    marker
+3. better contorl
+
+any node in the class hirachery cannot serilizable will fail the deserilization process
+
+
+
+
