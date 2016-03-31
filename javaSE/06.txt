@@ -1,0 +1,185 @@
+*interface extends another interface
+
+*List vs Set
+List:
+an ordered collection, not sorted
+sequential collection
+
+
+Set:
+has no duplicates
+
+*hashCode: reference->address (16 bit, one int)
+
+because == to compare is not enough
+
+*HashSet
+a & b
+(a.hashCode==b.hashCode && a.equals(b))
+why first compare hashCode? -> protocol of hashCode() function
+1. it returns consistent value
+2. a.equals(b)  --> a.hashCode() == b.hashCode()
+3. a.hashCode()==b.hashCode()   !-> a.equals(b)
+
+
+#3 code:
+WrappedString.java
+
+*A -> 41  65
+a -> 61  97
+0 -> 30 48
+
+
+*instanceof vs getClass
+A<-B<-C   A a = new C(); B b = (B)a; C c = (C)a;
+a instanceof A = T, a can be upcast or downcast to A. all true for a.
+
+however, getClass will return the true class of this instance.
+getClass will return C to all three class .
+
+TOPIC #3
+@Override
+public int hashCode(){
+1. random 1-100
+2. return 100
+
+}
+
+@Override 
+public boolean equals(Object obj){
+1. true
+2. false
+
+}
+
+Test:
+Set set=..
+WrappedString ws = new WrappedString("abc");
+for(int i=0;i<100;i++){
+set.add(ws);
+}
+set(size) = ?
+
+Give the formula, a.hashCode ==b.hashCode()&&a.equals(b)
+give the modified one.
+
+
+*LinkedHashSet can keep the order of the Set
+*TreeSet can make sorting
+
+*how to insert into hashSet
+1. calculate hashcode
+2. hashfunction(hc) -> address
+3. save to this address
+
+lookup time: O(1)
+insert time: O(1)
+delete time: O(1)
+more space
+
+collision:
+1.make a linked list in a node
+2.
+
+resizing:
+75%, double
+
+
+*linked hashset
+value node is structured: value,pionter
+
+*HOW TO IMPLEMENT A SET ARRAYLIST
+USE TEO ARRAYLIST
+FIRST TO STORE HASHCODE
+SECOND STORE VALUE
+
+*arraylist vs linkedlist
+arraylist: is good for random access, 
+can design Stack
+
+linkedlist is good in insertion/deletion
+can design Queue
+
+Facade Design Pattern -> Java, Queue
+Queue in the interface of LinkedList
+
+Adapter Design Pattern -> pop() or push() method, "has a" relation
+Stack has a arraylist inside of it.
+(instantiated or borrow another class's method, make it my fields)
+extends is tight coupling, while adapter is using POJO(Plain Old Java Object, no subclass or superclass), loose coupling
+Avoid the mistake from superclass
+
+ArrayList vs Vector
+resizing rate 50% vs 100%
+thread unsafe vs thread safe
+
+*HASHMAP, HASHTABLE, CONCURRENTHASHMAP
+Thread-safe:  no,  yes,  yes
+perfamance:   best,  worst, good
+		1:6:2
+allows null key: yes, no,  no
+iterator: fail-fast, fail-fast, fail-safe
+
+
+#4 code
+*comparator vs comparable
+they are interfaces
+public interface comparable<V>{
+	int compareTo(V another);
+}
+
+
+
+*treemap, dont use equals and hashcode to compare, but use comparable
+so, every object in treemap will have to implement comparable
+such as, person class need to use string name's comparable
+
+COMPARATOR is always used to make the class POJO and anonmyous class
+
+
+
+
+#5,
+TestCollections
+
+ iterator vs enumeration
+public interface Iterator<V> {
+	boolean hashNext();
+	V next();
+	void remove();
+}
+
+public interface Enumeration <V>{
+	boolean hasMoreElement();
+	V nextElement();
+}
+
+they both are iterator design pattern, enumeration is more safe, read only
+
+How TO GO traverse List, Set,Map
+
+Iterator <- ListIterator, ListIerator can go back, previous
+fail-fast iterator,  currentmodificationexception
+
+
+*Collections API
+(Arrays API)
+sort, reverse, shaffle
+
+design a shaffle
+int[] x = {...}
+int n = x.length;
+Random r = new Random();
+for(int i=0;i<n;i++){
+	int j=i+r.nextInt(n-i);
+	swap(x[i],x[j]);
+}
+
+
+
+
+
+
+
+
+
