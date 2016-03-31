@@ -1,0 +1,92 @@
+*design pattern:
+singleton pattern: only one object
+1.lazy model: the object is not in memory at first, when call getInstance, it iwll get into memory. singleton is usually very big. EODPrice of all stocks, read-only. 
+2. use synchronized, performance bad
+3. greedy model
+load the instance at first time
+performance good, thread-safe, but cost memory
+
+
+-------all above is not working, use only 4!!
+
+-----------
+code block #6
+-----------
+
+4. classic, but has the time bug 
+
+5.
+public class MySingle {
+	private MySingle(){
+	}
+
+	private static class Inner{
+		static MySingle instance = new MySingle();
+	}
+
+	public static MySingle getInstance(){
+		return Inner.instance;	
+	}
+}
+
+**singleton code should not implement serilizable
+deep copy
+
+**use reflection can make singleton does not work
+
+*final class and class with only prive constructor, will not have subclass
+
+
+
+#TOPIC CLASS LOADER
+SYSTEM CLASS LOADER
+
+
+*JDBC
+**.properties
+#comment
+key1 = value1
+the superclass of Properties is Hashtable(k,v), hashtable's super class is Dictionary, implemnets Map  
+
+*DBCP AND JNDI(JAVA NAMING DIRECTORY AND INTERFACE)
+SERVER AND LOCAL
+
+*statement, is a interface
+subinterface -> preparedStatement
+subintercace -> CallableStatement
+
+statement and preparestatement:
+statement can not allow query has premeter, but preparestatement is dynamic, prevent sql injection
+preparestatement is pre-compiled, can have a better performance
+
+*oracle's stored precedure and function.
+function returns value but stop precedure won't
+but the input of stored precedure can be the output.
+
+PreparedStatement can call store precedure with input but no output,
+callablestatement can call stored precedure with both input and output
+They can do what Statement can do
+
+
+
+**How to make a transaction?
+->   conn.setAutoCommit(false);
+     ...
+........//sql
+	conn.commit();
+
+
+**How to find schema of a resultset?
+ResultSet rs = ...
+Result SetMeteData rsmd = rs.getMeteData();
+rsmd.getColumnCount();
+
+What are the types of JDBC drivers, ODBC
+
+
+
+
+
+
+
+
