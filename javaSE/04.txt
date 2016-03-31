@@ -1,0 +1,108 @@
+topic: Java
+
+*immutable class
+
+JUnit, very important
+
+##############################
+Code #1
+##############################
+
+fibonacci-> iterative way
+
+import static java.lang.Math.*;
+
+*add mutation method in immutable class, create another object inside the class.
+
+*String, StringBuffer, StringBuilder
+thread-safe: only one thread can access at one time
+
+*Boxing and AutoBoxing
+Because JAVA 5 support enum, autoboxing, generics, annotation
+
+#iNTEGER X = 10 
+Integer y= 10;
+x==y   is true;
+if x =1000, and y =1000; x==y is not true;   -128-127
+
+*Upcast vs Downcast
+C is super class of B and B is super class of A
+A a = new (C)
+B b = (B) a;
+
+float x = (float) 1.2;   in java, . is double
+
+example2: short x = 6, short y = 7; short z = x+y will be int type.
+
+*(under java 6)abstract class and interface difference:
+abstract class:
+partial implematition
+single inheritance
+#diamond prardim
+#default: (methods) any
+	(fields) any
+
+interface:
+no implentation
+multiple inheritance
+#default and only: (methods) public abstract
+	(fields) public static final
+#Lazy-loading feature: 
+
+
+Actually abstract class is a concrete class, even though we can not new it, we can initialate its children classes.
+#a abstract class can interiance a concrete class.
+
+
+
+
+###############################################
+#2 clone
+###############################################
+
+*clone and cloneable
+clone: protected Object clone() throws CloneNotSupportedException;
+create a class to override the clone method
+
+Junit how to handle exception:
+@Test(expected = CloneNotSupportedException.class)
+
+IF THE CLASS WANT TO YOU CLONE METHOD, THE CLASS MUST BE IMPLEMENTED CLONEABLE
+
+clone is the shallow copy of the object, because the str in the class will not be copied.
+
+why clone is so hard to use, it is not suggested to use. waste space
+
+
+deep copy: 
+
+
+*prototype:
+!!
+
+
+*static and non-static
+static methods or fields can be invoked without initiated. Only one copy. static fields are shared for all instances.
+
+*final, finally, finalize
+finally block
+finalize is protected void finalize(); ->destructor
+
+
+*reflection
+A (f()) <- B(g()) <- C(h())
+A a = new C()
+B b = (B) a;
+C c = (C)a;
+
+for all these, what is correct:
+a.f(),b.f(),c.f(), b.g(),c.g(),c.h()
+what is wrong:
+a.g(),a.h(),b.h()
+
+!!!!public final Class getClass()
+can find the exact class even go through casting
+
+
+
+
