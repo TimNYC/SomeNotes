@@ -1,0 +1,56 @@
+*OOP concepts:
+encapsulation
+inderitance
+polymorphism (override vs overload)
+--return type must be the same
+
+abstraction
+
+child class inherit EVERYTHING of super class, have but not access.
+
+
+*reference vs value
+java is passed by value of the reference
+
+reference is the address -> value is the reference's value in stack.
+
+*== and equals
+Object: 
+.toString
+.equals
+
+heap
+-------
+stack < - > ------cache ---- cpu
+
+speed: cpu>cache>stack>heap
+space: heap>stack>cache>cpu
+heap use vritual memory, can be unlimited.
+
+*String
+!! String pool
+string pool is in stack
+use string.intern to see the pool value.
+
+String s1 = "abc";
+String s2 = "abc";
+String s3 = new String("abc");
+
+so, s1 is the same as s2, because "abc" is in string pool and located in stack
+whiile, s3 is in stack but new String("") value will be in heap. but s3 will also give the value to pool but not linked.
+
+s1 = s2+"bc"  -> the same as "new", it will be in heap, not in stack pool
+
+*immutable vs final
+3 finals -> final class can not be interited, final method can not be override, final variable the reference of the object cannot be changed, but you can change the value.
+
+immutable: the value cannot be changed, 
+how to write a immutable class: 
+1.the class is final.
+2.all fields are private.
+3.only getters, no setters.
+4.use constructor for initialization
+
+
+String is a final class, also is a immutable.
+
