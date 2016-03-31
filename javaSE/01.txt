@@ -1,5 +1,3 @@
-mercury
-
 C:\OpenSource\
 	-eclipse
 	-tomcat
@@ -151,17 +149,3 @@ where e.deptno *= d.deptno
 select worker.ename||' works for ' ||manager.ename
 from emp worker, emp manager
 where worker.mgr = manager.empno;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
