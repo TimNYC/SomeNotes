@@ -1,0 +1,42 @@
+*jquery obj vs dom obj
+$(this)    this
+
+.eq is jquery obj,
+.get or [0] is dom obj
+
+so the conversion of jquery obj and dom obj: add $() to change a dom obj to jquery obj, and use .get(0) or [0] to get a jquery obj
+
+if a obj exist in a html, $(selector).length = 0
+
+jquery obj is always shellow copy but dom obj is singleton
+
+*$(selector).fn()
+$.fn()
+$.ajax()
+
+
+proxy and business deligate
+the difference: output and process
+
+*trigger
+
+*sso: single sign on
+
+
+
+#TOPIC use javascript/jquery to implement a hashmap
+
+#TOPIC research on backbone.js
+
+
+*angular.js
+*history
+http://www.angularjshub.com/
+
+*binding
+
+*observer pattern
+
+
+*throwable and overservable are both concrete class
+
