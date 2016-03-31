@@ -1,0 +1,104 @@
+*overview of j2ee
+n-tier
+
+*DAO
+
+*DTO
+
+*stateful
+*stateless -> can be singeton
+
+
+*Servlet Lifecycle
+1. init()
+2. service
+3. destroy
+
+*jsp LIFECYCLE
+1. jspInit()
+2. _jspSevice()
+3. jspDestroy
+
+*doGet, doPost
+
+*JSP Implicit Object
+scope: page, request,session, application
+other: out, response, pageContext,config
+
+<session> tag has <cookie-conig> has <secure> true <secure>
+must use https
+
+*JSP
+1. JSP EXPRESSION:<%=... %>
+2. JSP DECLERATION:<%! ...%>
+3. JSP SCRIPTLET: <% ...  %>
+4. JSP DIRECT: <%@ %>
+(1).PAGE DIRECT: <%@page import = "..."%>
+(2).Include Direct: <%@inlcude file = "..." %> direct include other page
+(3).Taglib Direct: <%@taglib uri="..." prefix = "..." %>
+JTSL
+--->new trend: HTML+JSTL
+
+jstl+el
+1. c.tld  -> login
+2. x.tld  -> define function
+3. fmt.tld -> formating
+4. sql.tld -> db
+
+<jsp:useBean id = "userInfo" scope = "request" class ="... UserInfo" />
+
+==> UserInfo userInfo = (UserInfo)request.getAttribute("userInfo");
+<jsp:getProperty name = "userInfo" property = "msg"/>
+userInfo.getMsg()
+<jsp:setProperty ... value = "abc"/>
+userInfo.setMsg("abc")
+
+**how to communicate between java and javascript
+1. <p style = "display:none">${user} </p>    use jquery to capture the value
+2. var name = '<c:out value = "${user.name}" />';
+
+EL. ${requestScope. field}
+1.PageScope
+2.requestScope
+3.sessionScope
+4.applicationScope
+
+*forward vs redirect
+page1 - forward -> page2   url: page1  content: page2
+page1 - redirect -> page2  url: page2 content: page2
+
+
+
+*TOPIC: HANDLE MULTIPLE SUBMIT BUTTONS
+
+*TOPIC: PREVENT DOUBLE SUBMISSION
+
+*jndi-> SEE DEMO01->JDBCUTIL.JAVA
+connect to dbcp use jndi
+Context should be rewrite in tomcat -> context.xml
+
+if the remote server dont have context.xml, can create a context.xml under META-INF
+
+*AJAX
+asynchronous JavaScript And XML
+jquery $.ajax
+
+
+
+*command pattern
+
+
+*multi-thread problems:
+how to make a asynconized code synconized?
+produce a consumer model
+BlockingQueue
+
+**
+mockito -> for MVC TESTING
+
+
+**
+bean->dao->util->dao.impl->service->action
+struts-has a helloAction extedns Action
+in HelloAction -> 
+
