@@ -1,0 +1,224 @@
+*marker interfaces:interface with no methods inside
+serializable, cloneable, eventlistener,randomaccess, singleThreadModel
+if a class implements singleThreadModel, it will be thread safe, waste performace, no recomended
+
+two right way to initiate the final variable:
+class A{
+	final int x =10;
+}
+class A{
+	final int x;
+	A(int x) {
+		this.x=x;
+	}
+}
+wrong way: because other foo(x) can be called by other methods
+class A{
+	final int x;
+	A(int x){
+	foo(x);
+	}
+	void foo(int x){
+		this.x=x;
+	} 
+} 
+
+*if I define a final object in a class. then do all the objects of this class share a copy of this object, this is WRONG. don't mess up static and final. static variable is class variable.
+*or have different copies but same values of this object, this is wrong too.
+
+*inner class:
+**static and non=static inner class:
+class A{
+	class B{
+	}
+	static class C{
+	}
+	//static inner class also as "nested class"
+	
+	void foo(){
+		class D{}
+	}
+
+	//annoymous inner class
+	I i= new I(){
+		@override
+		public void foo(){
+			...
+		}
+	} 	
+	
+}
+
+A.C c = new A.C();
+A a = new A();
+A.B b = a.new B();  <=> A.B b = A().new B();
+
+what is the advatage of inner class?
+inner can visit all private variable and methods of A class and static inner class can visit all static all private variable and methods.
+
+**A.class, A$B.class,A$C.class represent the inner class.
+
+**local inner class:
+static vs non-static variable
+class vs  member variable
+local variable, is defined in a function.
+
+for static and memeber variables, you dont have to give them value, but for local varibale, it must has value.
+compiled: A$1D.class
+
+**annoymous inner class:
+interface I {
+	void foo();
+}
+compiled: A$1.class
+
+questions:
+1. can we define a inner class in a interface?
+yes and no, because can only define nested class in a interface, static inner class.
+
+2. Object obj1 = new Object();
+oBJECT OBJ2 = new Object(){}; anonymous inner class for child class of Object()
+
+3. can a outer class inhrite a non-static inner class?
+class A{
+	class B{}
+}
+
+must write a new constructor, other wise there will be compile error
+class C extends A.B{
+	public C(){
+		new A().super();
+		//A.new B
+	}
+	public C(A a){
+		a.super();
+	}
+}
+if it is static class, then no need to do that.
+
+*garbage collection
+*System.gc() andRuntime.getRuntime().gc()
+static and object method
+
+**OS FOR THREAD
+1. time-slicing
+2. exhausting
+	
+*define a static final variable, it will not be garbage collected, it will be in stack not in heap
+
+*how to minimize gc?
+use object pooling -> factory pattern
+not use 'new' but use java bean id.
+
+*if a program is causing stack over flow, how to use gc to solve it?
+1. make the memory larger, java -Xms 512MB -Xmx2GB HelloWorld
+
+* how to dump JVM:
+two infinite loop:
+while(true){
+}
+//heap infinite
+void foo() {
+	foo();
+}
+//stack infinte
+
+**public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Object[] obj = null;
+		while(true){
+			obj = new Object[]{obj};
+		}
+	}
+
+*Java HEAP, see PPT
+PERM SPACE. STRING POOL
+
+#Topic 1
+research on 4 references in Java
+Strong reference 
+Soft reference
+week reference
+phantom reference
+(java.lang.ref.*)
+
+
+JIT, just-in-time compiler: compile to assembly
+
+#TOPIC 2: Use refelection to make string variable
+void foo(String str){
+	str = "esfs";
+}
+//use refelection to change "abc" to "esfs", both contents and length
+String str = "abc";
+foo(str);
+print(str);//="abc"
+print(str==str) // = true
+
+**An object can do upcasting and downcasting, if you look up, you know everything, but if you look down, you know nothing.
+hiracky and inhiritance
+
+*static method cannot be override, only object level methods can be overrid
+must have @Override
+polymorphism, static method is not polymorphism
+
+*for any object, the constructor is always the last one to be called. 
+when you create objec, you need to create all non-static variable fields/
+polymorphism can be applied even before creation of a object.
+polymorphism can only be on non-static,non-private methods, you can not override a class and fields.
+
+*how many level polymorphism?
+two level.
+example A->B->C, they all have foo()
+in C you can get C.foo(), also you can get B.foo() using super().foo()
+but you cannot get A.foo(). EVEN REFLECTION CANNOT GET A.FOO().
+
+*how to override?
+Base, 
+		[Access1] RT1 mthodNone(params) [throws ExceptionA],
+
+Sub
+@Override
+		<=Access1 "is a"   ==        ==    "is a",only for checked ex
+		[Access2]  RT1  methodNone (params) [throwExceptionB],
+
+*static block
+class hello{
+	static String str = "hello,world";
+	public static void main(String...args){
+		print(str);
+	}
+	static {
+	print(str);
+		str = "Hello,Peter";
+	}
+}
+
+*lazy loading,
+See Q21
+all the fields and static objects will not be loaded in interface, except you actually touched the objects and fields.
+
+****
+public class A{
+	class B{
+		static void foo(){}   ---wrong, because you cannot call foo without initiate B
+		C c = new C();    --right,-static inner class is equal to a outer class
+	}
+	
+	class C{
+		static void foo(){}   ----wrong,
+		void foo2(){}    -----right
+		B b = new B();   ----wrong, B cannot find a A
+	}
+	class void foo2(){
+		new B();	----right
+		new C();
+	}
+}
+		
+
+
+
+
+
+
