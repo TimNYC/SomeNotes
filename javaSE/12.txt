@@ -1,0 +1,61 @@
+*jQuery
+selector
+
+$("#x")
+$(".x")
+$("div")
+
+*event propagation, 3 phase
+capturing
+taegeting, who triger the event
+bubbling, who handle the event
+
+*event.target
+event.currenttarget
+
+*event.stopPropagration()
+<=> return false;
+also can substitude event.defaultEvent
+
+*css to make something disappear
+visibility:hidden
+display:none
+opacity:0
+
+*onload
+
+*document.load vs onload
+
+*onload, onbeforeunload, onunload
+
+
+*Basic02.html
+
+callback function with () is just a function, withou will be call back function
+
+attr with different number of parameters
+
+**
+$("state").find("option[value='"+mystate+"']").attr("selected",true);
+
+
+*SPA: SINGLE PAGE APPLICATION
+
+*append
+$(parent).append(child)
+$(child).appendTo(parent)
+
+*A insertAfter B ->  B A
+A after B  ->  A B
+A insertBefore B  -> A B
+A before B  ->  B A
+
+*REMOVE AND DETACH -> REMOVE CAN NOT BE CALLED BACK, BUT DETACH CAN
+EMPTY ONLY REMOVE THE CHILD ELEMENTS.
+
+
+
+**********
+1. WeakHashMap
+2. a.hashCode == b.hashCode&&(a==b||a.equals(b))
+
