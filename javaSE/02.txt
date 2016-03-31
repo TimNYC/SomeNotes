@@ -1,0 +1,183 @@
+topic: oracle database
+
+*group function:
+types: AVG COUNT MAX MIN STDDEV SUM VARIANCE
+
+SELECT ...
+FROM ...
+WHERE ...
+GROUP BY ...
+ORDER BY ...
+
+SELECT COUNT(COMM)
+FROM EMP
+WHERE DEPTNO = 30;
+
+SELECT AVG(COMM)
+FROM EMP;
+//NULL RECORD WILL NOT BE CALCULATED.
+
+SELECT AVG(NVL(COMM,0))
+FROM EMP;
+//NULL RECORD WILL ALSO BE CALCULATED.
+
+SELECT DEPTNO, AVG(SAL)
+FROM EMP
+GROUP BY DEPTNO;
+
+SELECT DEPTNO,JOB,SUM(SAL)
+FROM EMP
+GROUP BY DEPTNO, JOB;
+
+//IF SELECT CONTAINS NON-GROUP FUNCTION, MUST USE GROUP BY, SEE THE ERROR BELOW:
+EXAMPLE 1:
+FIND ENAME AND SAL WHOSE SALARY IS THE MAX
+!! USE SUBQUERY
+SELECT ENAME, SAL FROM EMP
+WHERE SAL = (SELECT MAX(SAL) FROM EMP);
+
+*YOU CANNOT USE THE WHERE CALSE TO RESTRICT GROUPS, MUST USE HAVINF
+EXAMPLE:
+SELECT DEPTNO, AVG(SAL)
+FROM EMP GROUP BY
+DEPTNO HAVING AVG(SAL) > 2000;
+
+*what is the difference between where and having clause?
+if the condition doesnot contain group functions, where and having are equvailent.
+
+select job, sum(sal) payroll
+from emp
+where job not like 'sales%'
+group by job
+having sum(sal)>5000
+order by sum(sal);
+
+*nexting group functions need group by in most of the conditions
+eample:
+select max(avg(sal))
+from emp
+group by deptno;
+
+select deptno, avg(sal)
+from emp
+group by deptno
+having avg(sal) = (select max(avg(sal))) from emp group by deptno);
+
+*****usually, dont add query in from clause.
+
+*SUBQUERY
+no order by
+single-row operators with single-row subqueries
+mulyiple-row operators with muitiple-row subqueries
+
+select deptno, min(sal)
+from emp
+group by deptno
+having min(sal)>
+		(select min(sal)
+		from emp
+		where deptno=20);
+
+*if the subquery return multi result, shoule use in or other than =
+*if the subquery return null, then the whole query will return null
+
+*in, any, all
+the difference between each and every
+< any means < than any one of the result, <=> a < max(list)
+< all means < than all results  
+So, the < any can be replaced by a single row operator < min
+a in (list)  <=> a = any(list)
+
+*not in, can return wrong result when incounter null
+select employee.ename
+from emp employee
+where employee.empono not in 
+(select manager.mgr from emp manager);
+
+return no records, this is wrong. see the null return from subquery.
+
+example:
+select ename deptno, sal
+from emp where (deptno,sal) in (select deptno,max(sal) from emp group by deptno);
+
+equal to:
+select ename, deptno,sal from emp a where sal = (select max(sal)) from emp b where a.deptno = b.deptno.
+
+equal to:
+select ename.deptno,sal from 
+emp a where not exist (select * from emp b where b.sal>a.sal)
+
+
+example2:
+find second max
+select max(sal) from emp where sal <>(select max(sal) from emp);
+
+find fifth max:
+PL/SQL
+USE ROWNUM THEN FIND MIN OR RANK
+
+TSQL
+TOP N
+
+SELECT A.SAL
+FROM EMP A
+WHERE 5 = (SELECT COUNT(DISTINCT(B.SAL))
+FROM EMP B WHERE B.SAL>=A.SAL);
+
+
+DYNAMIC SQL:
+SET VERIFY ON
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE EMPNO = &EMPLOYEE_NUM
+
+SELECT * FROM EMP WHERE JOB = '&JOB_TITLE'  //ENTER WILL ADD ''
+
+select empno,ename,job,&column_name
+from emp
+where &condition
+order by &order_column
+
+&& means to reuse the variable
+
+accept
+
+define and undefine
+
+
+
+select * from user_tables
+
+create table dept30 as 
+select empno,ename,sal*12annsal,hiredate
+from emp 
+where deptno =30;
+//create table and the data! no like insert
+
+alter table dept30
+add (job varchar2(9))
+
+DDL CANNOT ROLL BACK, BUT DML CAN ROLL BACK!
+
+
+
+*index
+to increase to do the tuning, help to search
+index is actually another sorted table to find id or some other things
+
+clustered index: physics index, the record itself, can only has one
+non-clustered index: logical index, can have a lot different non-c index
+
+when to use index:
+no index if the table is small
+index should be on frequenctly used tags
+index should return small amount of data
+if the data is always changes, should avoid index(need to update all the time)
+
+* view
+is not a temp table
+view is a substituation of subquery
+
+* materialized view
+is a table, will take space.
+
+* index can be created on materilized view, not on a view.
+
