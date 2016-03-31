@@ -1,0 +1,22 @@
+1.class A extends Thread{
+	@override
+	public void run(){	
+	}
+}
+
+A a = new A()
+a.start()
+
+class B implements Runable(){
+	@Override
+	public void run(){}
+}
+
+B b = new b()
+new Thread(b).start()
+
+2. start(), method: new a thread.   can run() method
+generate a new thread must use start(), no other way to do so
+runnable  is better than thread, because allow multi-inheritance
+
+3.
